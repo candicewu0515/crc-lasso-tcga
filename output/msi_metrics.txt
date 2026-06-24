@@ -1,6 +1,5 @@
-MSI-H vs MSS prediction (TCGA COAD) — Random Forest / Boruta
-============================================================
+MSI-H vs MSS prediction (TCGA COAD)
+===================================
 Samples: 273 (MSI-H=59, MSS=214)
 Honest nested-CV AUC: 0.928
-Wilcoxon p (P(MSI-H) ~ group): 7.55e-24
-Signature (22 genes): MLH1, B3GNT4, TRIM7, MSH4, PRR15, NAALADL2, EPM2AIP1, H2AFJ, C18orf18, HSPH1, NUBPL, DDX27, OXCT1, MOGAT3, ULBP2, IYD, CAB39L, MUC6, LOC339290, RNF43, RPL22L1, LYPD5
+Final signature (22 genes): MLH1, NAALADL2, PRR15, TRIM7, C18orf18, MSH4, HSPH1, MAPK12, TCF7, SPIRE2, GFI1, TYMS, KLHL31, B3GNT4, CIITA, LYPD5, HAR1B, TNFRSF18, C3orf72, KIR3DL1, IFNG, MAMLD1

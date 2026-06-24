@@ -3,4 +3,3 @@ output/*.csv
 .DS_Store
 .Rhistory
 *.Rproj
-paper_body.docx
