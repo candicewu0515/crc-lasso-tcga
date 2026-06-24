@@ -1,9 +1,8 @@
-Corrected TCGA COAD analysis — metrics
-=====================================
-Samples: Tumor(-01)=286, Normal(-11)=41
+RF/Boruta TCGA COAD analysis — metrics
+======================================
+Samples: Tumor=286, Normal=41
 DEGs: 1618 (Up=358, Down=1260)
 PCA PC1: all=14.49%, DEG=40.64%
-lambda.min=0.0030 (16 genes): CDH3, OTOP2, DHRS7C, AADACL2, KRT80, ETV4, ESM1, FAM180B, RXRG, GLP2R, KHDRBS2, SGCG, FOXQ1, CMTM5, CDH10, GRIN2D
-lambda.1se=0.0046 (15 genes): CDH3, OTOP2, DHRS7C, AADACL2, KRT80, ETV4, ESM1, FAM180B, RXRG, KHDRBS2, SGCG, FOXQ1, CMTM5, CDH10, GRIN2D
-CV AUC: min=1.000, 1se=1.000
-Wilcoxon p (prob ~ group): 3.960e-25
+Boruta confirmed: 93 genes
+Top-20 signature: SCARA5, BEST4, KRT80, ESM1, GLP2R, PYY, IL6R, FAM135B, OTOP2, CA7, ETV4, SCGN, JUB, CDH3, LOC92659, ENC1, METTL7A, TRIB3, P2RY1, GUCA2B
+RF 10-fold CV AUC: all-confirmed=1.000, top-20=1.000
