@@ -1,0 +1,5 @@
+MSI-H vs MSS prediction (TCGA COAD)
+===================================
+Samples: 273 (MSI-H=59, MSS=214)
+Honest nested-CV AUC: 0.928
+Final signature (22 genes): MLH1, NAALADL2, PRR15, TRIM7, C18orf18, MSH4, HSPH1, MAPK12, TCF7, SPIRE2, GFI1, TYMS, KLHL31, B3GNT4, CIITA, LYPD5, HAR1B, TNFRSF18, C3orf72, KIR3DL1, IFNG, MAMLD1
