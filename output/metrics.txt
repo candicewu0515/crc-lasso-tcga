@@ -1,0 +1,9 @@
+Corrected TCGA COAD analysis — metrics
+=====================================
+Samples: Tumor(-01)=286, Normal(-11)=41
+DEGs: 1618 (Up=358, Down=1260)
+PCA PC1: all=14.49%, DEG=40.64%
+lambda.min=0.0030 (16 genes): CDH3, OTOP2, DHRS7C, AADACL2, KRT80, ETV4, ESM1, FAM180B, RXRG, GLP2R, KHDRBS2, SGCG, FOXQ1, CMTM5, CDH10, GRIN2D
+lambda.1se=0.0046 (15 genes): CDH3, OTOP2, DHRS7C, AADACL2, KRT80, ETV4, ESM1, FAM180B, RXRG, KHDRBS2, SGCG, FOXQ1, CMTM5, CDH10, GRIN2D
+CV AUC: min=1.000, 1se=1.000
+Wilcoxon p (prob ~ group): 3.960e-25
