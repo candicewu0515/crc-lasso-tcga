@@ -18,6 +18,8 @@ The pipeline combines:
 3. **Feature selection** — L1-regularized (LASSO) logistic regression with
    10-fold cross-validation (`glmnet`), reporting `lambda.min` and
    `lambda.1se` signatures and out-of-fold (pre-validated) ROC/AUC.
+4. **Functional enrichment** — GO biological-process and KEGG
+   over-representation of the up- and down-regulated DEGs (`clusterProfiler`).
 
 Tumor / normal labels are taken **directly from the TCGA barcode sample-type
 code** (`-01` = primary tumor, `-11` = solid tissue normal), giving 286 tumor
@@ -57,7 +59,16 @@ Outputs are written to `figures/` and `output/`.
 | Cross-validated AUC | 1.00 |
 
 Signature genes include up-regulated *CDH3, KRT80, ETV4, ESM1, FOXQ1* and
-down-regulated candidate suppressors *OTOP2, CDH10*.
+down-regulated candidate suppressors *OTOP2, CDH10*. Enrichment of the
+up-regulated genes recovers canonical CRC pathways (Wnt, cadherin, Hippo
+signaling); down-regulated genes reflect loss of normal colonic transport and
+metabolic functions.
+
+> **Note on the AUC.** Tumor-vs-normal separation in bulk RNA-seq is an
+> intrinsically easy task, so the cross-validated AUC of 1.00 is expected and
+> serves as a proof-of-concept sanity check rather than a claim of
+> clinical-grade performance. Harder endpoints (subtyping, staging, MSI) and
+> external validation are the natural next steps.
 
 ## License
 

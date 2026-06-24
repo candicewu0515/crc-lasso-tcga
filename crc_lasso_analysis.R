@@ -145,3 +145,35 @@ cat(sprintf("CV AUC: min=%.3f, 1se=%.3f\n", auc_min, auc_1se))
 cat(sprintf("Wilcoxon p (prob ~ group): %.3e\n", wt$p.value))
 sink()
 cat("\nDONE. Figures in figures/, tables in output/\n")
+
+# ---- 9. Functional enrichment of DEGs (GO BP + KEGG) ------------------------
+suppressMessages({ library(clusterProfiler); library(org.Hs.eg.db) })
+up_sym   <- sig$gene[sig$change == "Up"]
+down_sym <- sig$gene[sig$change == "Down"]
+to_entrez <- function(s) suppressWarnings(
+  bitr(s, "SYMBOL", "ENTREZID", org.Hs.eg.db)$ENTREZID)
+gene_list <- list(`Up-regulated` = to_entrez(up_sym),
+                  `Down-regulated` = to_entrez(down_sym))
+
+cc_go <- compareCluster(gene_list, fun = "enrichGO", OrgDb = org.Hs.eg.db,
+                        ont = "BP", pvalueCutoff = 0.05, qvalueCutoff = 0.1,
+                        readable = TRUE)
+cc_go <- clusterProfiler::simplify(cc_go, cutoff = 0.6)
+p_go <- dotplot(cc_go, showCategory = 6, font.size = 9) +
+  ggplot2::theme(axis.text.y = ggplot2::element_text(size = 8))
+ggsave("figures/fig6_enrichment.png", p_go, width = 7.2, height = 6, dpi = 300)
+write.csv(as.data.frame(cc_go), "output/GO_enrichment.csv", row.names = FALSE)
+
+kegg <- tryCatch({
+  k <- compareCluster(gene_list, fun = "enrichKEGG",
+                      organism = "hsa", pvalueCutoff = 0.05)
+  write.csv(as.data.frame(k), "output/KEGG_enrichment.csv", row.names = FALSE)
+  head(unique(as.data.frame(k)$Description), 8)
+}, error = function(e) paste("KEGG skipped:", conditionMessage(e)))
+
+cat("\n== Top GO BP terms (Up) ==\n")
+go_df <- as.data.frame(cc_go)
+print(head(subset(go_df, Cluster=="Up-regulated", select=c(Description, p.adjust)), 6))
+cat("\n== Top GO BP terms (Down) ==\n")
+print(head(subset(go_df, Cluster=="Down-regulated", select=c(Description, p.adjust)), 6))
+cat("\n== Top KEGG ==\n"); print(kegg)
